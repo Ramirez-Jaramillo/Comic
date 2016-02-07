@@ -378,7 +378,7 @@ public class Menu {
 	    String username = "";
 	    String password = "";
 
-	    System.out.println("The Comic Catalog");
+	    System.out.println("The Sheldon Cooper Comic Catalog");
 
 	    // Read username and password
 	    System.out.print("Username: ");
