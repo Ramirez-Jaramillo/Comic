@@ -36,8 +36,10 @@ public class Login {
 	
 	public static void showUsers() {
 		System.out.println("Current Users: ");
+		int counter = 1;
 		for (Person persons : validAccounts) {
-			System.out.println("User: " + persons.getUsername());
+			System.out.println(counter + ". " + "User: " + persons.getUsername());
+			Catalog.clearConsole();
 		}
 	}
 	

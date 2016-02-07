@@ -52,7 +52,8 @@ public class Menu {
 		ArrayList<String> menuOptions = this.getMenuOptions();
 		
 		String[] menuItems = new String[menuOptions.size()];
-    	System.out.println("Main Menu\n Type an option");
+		System.out.println("******* Welcome to the Sheldon Cooper Comic Catalog *******");
+		System.out.println("Type an option to begin:");
     	for (int i = 0; i < menuItems.length; i++) {
     		System.out.println(menuOptions.get(i).toString());
     	}
@@ -78,28 +79,41 @@ public class Menu {
 					int comicYear = 0;
 					int comicCopies = 0;
 					int comicGenre = 0;
+					Catalog.clearConsole();
+					System.out.println("Create a New Comic");
 					System.out.println("Comic Name: ");
 					comicName = input.nextLine();
-					System.out.println("Comic Number: ");
-					comicNumber = input.nextInt();
-					System.out.println("Comic Year: ");
-					comicYear = input.nextInt();
-					System.out.println("Comic Copies: ");
-					comicCopies = input.nextInt();
-					System.out.println("Comic Genre: ");
-					Catalog.showGenres();
-					comicGenre = input.nextInt();
-					// Create Comic Object
-					Comic newComic = new Comic();
-					newComic.createComic(comicName, comicNumber, comicYear, comicCopies, comicGenre);
-					// Show message and back to menu
-					System.out.println("Comic created");
+					try {
+						System.out.println("Comic Number: ");
+						comicNumber = new Integer (input.nextLine());
+						System.out.println("Comic Year: ");
+						comicYear = new Integer (input.nextLine());
+						System.out.println("Comic Copies: ");
+						comicCopies = new Integer (input.nextLine());
+						System.out.println("Comic Genre: ");
+						Catalog.showGenres();
+						comicGenre = new Integer (input.nextLine());
+						// Create Comic Object
+						Comic newComic = new Comic();
+						newComic.createComic(comicName, comicNumber, comicYear, comicCopies, comicGenre);
+						// Show message and back to menu
+						System.out.println("Comic created");
+					} catch (NumberFormatException e) {
+						System.out.println("You didn't enter a valid number");
+						this.goToOption(menuOption);
+					}
+					catch (Exception e) {
+						System.out.println(e.getMessage());
+					}
+					Catalog.clearConsole();
 					this.showMenuOptions();
 					break;
 				case 2:
 					// Get comic info to be deleted
 					String comicNameToRemove = "";
 					int comicNumberToRemove = 0;
+					Catalog.clearConsole();
+					System.out.println("Delete a comic");
 					System.out.println("Comic Name: ");
 					comicNameToRemove = input.nextLine();
 					try {
@@ -108,11 +122,13 @@ public class Menu {
 						Catalog.removeComic(comicNameToRemove, comicNumberToRemove);
 						System.out.println("Comic Deleted");
 					} catch (NumberFormatException e) {
-						System.out.println("Enter a valid number");
+						System.out.println("You didn't enter a valid number");
+						this.goToOption(menuOption);
 					}
 					catch (Exception e) {
 						System.out.println(e.getMessage());
 					}
+					Catalog.clearConsole();
 					this.showMenuOptions();
 					break;
 				case 3:
@@ -143,23 +159,32 @@ public class Menu {
 						System.out.println("Comic modified");
 					} 
 					catch (NumberFormatException e) {
-						System.out.println("Enter a valid number");
+						System.out.println("You didn't enter a valid number");
+						this.goToOption(menuOption);
 					}
 					catch (Exception e) {
 						System.out.println(e.getMessage());
 					}
+					Catalog.clearConsole();
+					this.showMenuOptions();
+					break;
 				case 4:
+					Catalog.clearConsole();
 					Catalog.showComics();
-					Login.showUsers();
+					Catalog.clearConsole();
 					this.showMenuOptions();
 					break;
 				case 5:
+					Catalog.clearConsole();
 					Catalog.showLoans();
+					Catalog.clearConsole();
 					this.showMenuOptions();
 					break;
 				case 6:
+					Catalog.clearConsole();
 					Catalog.showLoans();
 					int loanToApprove = 0;
+					System.out.println("Approve a Loan");
 					System.out.println("Loan Number: ");
 					try {
 						loanToApprove = new Integer(input.nextLine());
@@ -167,16 +192,20 @@ public class Menu {
 						System.out.println("Loan approved");
 					}
 					catch (NumberFormatException e) {
-						System.out.println("Enter a valid number");
+						System.out.println("You didn't enter a valid number");
+						this.goToOption(menuOption);
 					}
 					catch (Exception e) {
 						System.out.println(e.getMessage());
 					}
+					Catalog.clearConsole();
 					this.showMenuOptions();
 					break;
 				case 7:
+					Catalog.clearConsole();
 					Catalog.showLoans();
 					int loanToFinish = 0;
+					System.out.println("Register a Devolution");
 					System.out.println("Loan Number to Finish: ");
 					try {
 						loanToFinish = new Integer(input.nextLine());
@@ -184,16 +213,20 @@ public class Menu {
 						System.out.println("Devolution registered. Loan Finished");
 					}
 					catch (NumberFormatException e) {
-						System.out.println("Enter a valid number");
+						System.out.println("You didn't enter a valid number");
+						this.goToOption(menuOption);
 					}
 					catch (Exception e) {
 						System.out.println(e.getMessage());
 					}
+					Catalog.clearConsole();
 					this.showMenuOptions();
 					break;
 				case 8:
+					Catalog.clearConsole();
 					Catalog.showLoans();
 					int loanToReject = 0;
+					System.out.println("Reject a Loan");
 					System.out.println("Loan Number to Reject: ");
 					try {
 						loanToReject = new Integer(input.nextLine());
@@ -201,28 +234,35 @@ public class Menu {
 						System.out.println("Loan Rejected");
 					}
 					catch (NumberFormatException e) {
-						System.out.println("Enter a valid number");
+						System.out.println("You didn't enter a valid number");
+						this.goToOption(menuOption);
 					}
 					catch (Exception e) {
 						System.out.println(e.getMessage());
 					}
+					Catalog.clearConsole();
 					this.showMenuOptions();
 					break;
 				case 9:
 					// Get user info to be created
 					String newUserName = "";
 					String newUserPassword = "";
+					Catalog.clearConsole();
+					System.out.println("Create a New User");
 					System.out.println("User Name: ");
 					newUserName = input.nextLine();
 					System.out.println("User Password: ");
 					newUserPassword = input.nextLine();
 					Login.createUser(newUserName, newUserPassword);
 					System.out.println("User Created");
+					Catalog.clearConsole();
 					this.showMenuOptions();
 					break;
 				case 10:
 					// Get user info to be deleted
 					String userNameToRemove = "";
+					Catalog.clearConsole();
+					System.out.println("Remove an User");
 					System.out.println("User Name: ");
 					userNameToRemove = input.nextLine();
 					try {
@@ -231,11 +271,14 @@ public class Menu {
 					} catch (Exception e) {
 						System.out.println(e.getMessage());
 					}
+					Catalog.clearConsole();
 					this.showMenuOptions();
 					break;
 				case 11:
 					// Get user info to be modified
 					String userNameToModify = "";
+					Catalog.clearConsole();
+					System.out.println("Modify an User");
 					System.out.println("User Name: ");
 					userNameToModify = input.nextLine();
 					String userNewName = "";
@@ -250,24 +293,32 @@ public class Menu {
 					} catch (Exception e) {
 						System.out.println(e.getMessage());
 					}
+					Catalog.clearConsole();
 					this.showMenuOptions();
 					break;
 				case 12:
+					Catalog.clearConsole();
 					Login.showUsers();
+					Catalog.clearConsole();
 					this.showMenuOptions();
 					break;
 				case 13:
 					// Get genre info to be created
 					String newGenreName = "";
+					Catalog.clearConsole();
+					System.out.println("Crete a New Genre");
 					System.out.println("Genre Name: ");
 					newGenreName = input.nextLine();
 					Catalog.createGenre(newGenreName);
 					System.out.println("Genre Created");
+					Catalog.clearConsole();
 					this.showMenuOptions();
 					break;
 				case 14:
 					// Get genre info to be deleted
 					String genreNameToRemove = "";
+					Catalog.clearConsole();
+					System.out.println("Remove a Genre");
 					System.out.println("Genre Name: ");
 					genreNameToRemove = input.nextLine();
 					try {
@@ -276,11 +327,14 @@ public class Menu {
 					} catch (Exception e) {
 						System.out.println(e.getMessage());
 					}
+					Catalog.clearConsole();
 					this.showMenuOptions();
 					break;
 				case 15:
 					// Get genre info to be modified
 					String genreNameToModify = "";
+					Catalog.clearConsole();
+					System.out.println("Modify a Genre");
 					System.out.println("Genre Name: ");
 					genreNameToModify = input.nextLine();
 					String genreNewName = "";
@@ -292,10 +346,13 @@ public class Menu {
 					} catch (Exception e) {
 						System.out.println(e.getMessage());
 					}
+					Catalog.clearConsole();
 					this.showMenuOptions();
 					break;
 				case 16:
+					Catalog.clearConsole();
 					Catalog.showGenres();
+					Catalog.clearConsole();
 					this.showMenuOptions();
 					break;
 				case 17:
@@ -311,15 +368,19 @@ public class Menu {
 		else if(userType.equals("U")) {
 			switch(menuOption) {
 				case 1:
+					Catalog.clearConsole();
+					System.out.println("This is the Comic Catalog");
 					Catalog.showComics();
-					Login.showUsers();
+					Catalog.clearConsole();
 					this.showMenuOptions();
 					break;
 				case 2:
+					Catalog.clearConsole();
 					Catalog.showComics();
 					// Get comic info for loan
 					String comicName = "";
 					int comicNumber = 0;
+					System.out.println("Request a Loan");
 					System.out.println("Comic Name: ");
 					comicName = input.nextLine();
 					try {
@@ -335,16 +396,21 @@ public class Menu {
 							System.out.println("There are no copies available for this comic");
 						}
 					} catch (NumberFormatException e) {
-						System.out.println("Enter a valid number");
+						System.out.println("You didn't enter a valid number");
+						this.goToOption(menuOption);
 					}
 					catch (Exception e) {
 						System.out.println(e.getMessage());
 					}
+					Catalog.clearConsole();
 					this.showMenuOptions();
 					break;
 				case 3:
 					Person currentUser = Login.getLoggedUser();
+					Catalog.clearConsole();
+					System.out.println("This is Your Loan History");
 					Catalog.showUserLoans(currentUser.getUsername());
+					Catalog.clearConsole();
 					this.showMenuOptions();
 					break;
 				case 4:
@@ -352,7 +418,7 @@ public class Menu {
 					newMenu.showMenuOptions();
 					break;
 				default:
-					System.out.println("Invalid Option");
+					System.out.println("You didn't Type a Valid Option");
 					this.showMenuOptions();
 					break;
 			}
@@ -378,7 +444,9 @@ public class Menu {
 	    String username = "";
 	    String password = "";
 
+	    Catalog.clearConsole();
 	    System.out.println("The Sheldon Cooper Comic Catalog");
+	    System.out.println("Login");
 
 	    // Read username and password
 	    System.out.print("Username: ");
@@ -396,7 +464,7 @@ public class Menu {
 	    	userMenu.showMenuOptions();
 	    }
 	    else {
-	    	System.out.println("User is not valid");
+	    	System.out.println("This is not a Valid User");
 	    	Menu userMenu = new Menu("Z");
 		    userMenu.showMenuOptions();
 	    }

@@ -31,9 +31,12 @@ public class Catalog {
 
 	public static void showComics() {
 		System.out.println("Current Comics: ");
+		int counter = 1;
 		for (Comic comics : comicComics) {
-			System.out.println("Name: " + comics.getName() + ". Number: " + comics.getNumber() + ". Year: " + comics.getYear()
+			System.out.println(counter + ". " + "Name: " + comics.getName() + ". Number: " + comics.getNumber() + ". Year: " + comics.getYear()
 					+ ". Copies: " + comics.getCopies() + ". Genre: " + comics.getGenre().getName());
+			counter++;
+			clearConsole();
 		}
 	}
 
@@ -43,6 +46,7 @@ public class Catalog {
 		for (Genre genres : comicGenres) {
 			System.out.println(counter + ". " + genres.getName());
 			counter++;
+			clearConsole();
 		}
 	}
 
@@ -96,6 +100,7 @@ public class Catalog {
 		for (Loan loans : comicLoans) {
 			System.out.println("ID: " + position + ". User: " + loans.getUser().getUsername() + ". Comic: " + loans.getComic().getName() + ". Number: " + loans.getComic().getNumber() + ". Status: " + loans.getStatus()
 					+ ". Initial Date: " + dateFormat.format(loans.getInitialDate()));
+			clearConsole();
 			position++;
 		}
 	}
@@ -168,8 +173,16 @@ public class Catalog {
 			if(loans.getUser().getUsername().equals(userName)) {
 				System.out.println("ID: " + position + ". Comic: " + loans.getComic().getName() + ". Number: " + loans.getComic().getNumber() + ". Status: " + loans.getStatus()
 				+ ". Initial Date: " + dateFormat.format(loans.getInitialDate()));
+				clearConsole();
 				position++;
 			}
 		}
+	}
+	
+	public static void clearConsole() {
+		System.out.println("------------------------------------------------------");
+		/*for (int i = 0; i < 100; i++) {
+			System.out.println("\b");
+		}*/
 	}
 }
